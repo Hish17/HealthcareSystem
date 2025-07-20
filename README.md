@@ -122,7 +122,7 @@ HealthcareSystem/
 
 ## 🧪 Testing
 
-You can test APIs using **Postman** or `curl`. For example:
+You can test APIs using **Postman** or `curl`.
 
 
 ## 👨‍💻 Author
