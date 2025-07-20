@@ -21,7 +21,6 @@ Create a `.env` file in the project root:
 OPENAI_API_KEY=your-openai-api-key
 ```
 
-> **Warning:** Never commit this file. It’s ignored in `.gitignore`.
 
 ### 3. Run the Application with Docker Compose
 
