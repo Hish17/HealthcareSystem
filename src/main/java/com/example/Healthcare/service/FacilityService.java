@@ -9,5 +9,7 @@ public interface FacilityService {
     List<Facility> getAllFacilities();
     Facility getFacilityById(Long id);
     Facility createFacility(Facility facility);
+    public Facility updateFacility(Long id, Facility updatedFacility);
+
 }
 

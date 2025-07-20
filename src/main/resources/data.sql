@@ -16,6 +16,7 @@ CREATE TABLE patients (
     age INTEGER,
     facility_id INTEGER REFERENCES facilities(id),
     created_at TIMESTAMP DEFAULT now(),
+    deleted BOOLEAN DEFAULT FALSE,
     updated_at TIMESTAMP DEFAULT now()
 );
 INSERT INTO facilities (

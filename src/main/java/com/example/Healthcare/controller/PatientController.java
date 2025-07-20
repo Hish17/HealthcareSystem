@@ -1,10 +1,8 @@
+
 package com.example.Healthcare.controller;
 
 import com.example.Healthcare.model.Patient;
 import com.example.Healthcare.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +10,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/patients")
+@CrossOrigin
 public class PatientController {
 
-    @Autowired
-    private PatientService patientService;
+    private final PatientService patientService;
+
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     @GetMapping
-    public ResponseEntity<Page<Patient>> getAllPatients(
-            @RequestParam(required = false) String search,
-            Pageable pageable) {
-
-        Page<Patient> patients = (search != null && !search.isEmpty())
-                ? patientService.searchPatientsByName(search, pageable)
-                : patientService.getAllPatients(pageable);
-
+    public ResponseEntity<List<Patient>> getAllPatients() {
+        List<Patient> patients = patientService.getAllPatients();
         return ResponseEntity.ok(patients);
     }
 
@@ -38,22 +34,23 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
-        return ResponseEntity.ok(patientService.createPatient(patient));
+        Patient created = patientService.createPatient(patient);
+        return ResponseEntity.ok(created);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patient) {
-        return ResponseEntity.ok(patientService.updatePatient(id, patient));
+        try {
+            Patient updated = patientService.updatePatient(id, patient);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
-        patientService.softDeletePatient(id);
+        patientService.deletePatient(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/facility/{facilityId}")
-    public ResponseEntity<List<Patient>> getPatientsByFacility(@PathVariable Long facilityId) {
-        return ResponseEntity.ok(patientService.getPatientsByFacilityId(facilityId));
     }
 }

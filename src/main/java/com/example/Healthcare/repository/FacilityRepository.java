@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FacilityRepository extends JpaRepository<Facility, Long> {
     // custom query methods
-    Facility findByType(String type);
+    Facility findByType(String type);  
     List<Facility> findByDeletedFalse();
+    
  }
