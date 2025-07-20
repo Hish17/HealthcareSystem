@@ -1,11 +1,14 @@
 package com.example.Healthcare.repository;
 
+import com.example.Healthcare.model.Facility;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.Healthcare.model.Patient;
 
-public interface FacilityRepository extends JpaRepository<Patient, Long> {
+public interface FacilityRepository extends JpaRepository<Facility, Long> {
     // custom query methods
-    // List<Facility> findByType(String type);
-    // List<Facility> findByDeletedFalse();
+    Facility findByType(String type);
+    List<Facility> findByDeletedFalse();
  }

@@ -2,7 +2,7 @@ package com.example.Healthcare.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -21,15 +21,12 @@ public class Facility {
 
     private Boolean deleted = false;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt = LocalDateTime.now();
-
-    @OneToMany(mappedBy = "facility", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Patient> patients;
-
+// @Column(name = "created_at", nullable = false, updatable = false)
+// private LocalDateTime createdAt = LocalDateTime.now();//
+// @Column(name = "updated_at")
+// private LocalDateTime updatedAt = LocalDateTime.now();//
+ @OneToMany(mappedBy = "facility", cascade = CascadeType.ALL, orphanRemoval = true)
+ private List<Patient> patients;//
     // ------------------- Getters and Setters -------------------
 
     public Long getId() {
@@ -72,21 +69,21 @@ public class Facility {
         this.deleted = deleted;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+   // public LocalDateTime getCreatedAt() {
+   //     return createdAt;
+   // }
+//
+   // public void setCreatedAt(LocalDateTime createdAt) {
+   //     this.createdAt = createdAt;
+   // }
+//
+   // public LocalDateTime getUpdatedAt() {
+   //     return updatedAt;
+   // }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+   // public void setUpdatedAt(LocalDateTime updatedAt) {
+   //     this.updatedAt = updatedAt;
+   // }
 
     public List<Patient> getPatients() {
         return patients;

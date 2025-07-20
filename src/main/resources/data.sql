@@ -1,6 +1,24 @@
--- Facilities
+-- Insert facilities
+DROP TABLE IF EXISTS patients;
+DROP TABLE IF EXISTS facilities;
+CREATE TABLE facilities (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    type VARCHAR(100),
+    address VARCHAR(255),
+    deleted BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now()
+);
+CREATE TABLE patients (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    age INTEGER,
+    facility_id INTEGER REFERENCES facilities(id),
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now()
+);
 INSERT INTO facilities (
-        id,
         name,
         type,
         address,
@@ -9,195 +27,43 @@ INSERT INTO facilities (
         updated_at
     )
 VALUES (
-        1,
-        'City Clinic',
-        'General',
+        'Test Clinic',
+        'Clinic',
         '123 Main St',
         false,
         now(),
         now()
     ),
     (
-        2,
-        'Downtown Hospital',
-        'Specialized',
+        'City Hospital',
+        'Hospital',
         '456 Elm St',
         false,
         now(),
         now()
     ),
     (
-        3,
-        'Eastside Medical',
-        'Urgent Care',
-        '789 Oak St',
+        'Downtown Medical Center',
+        'Clinic',
+        '789 Oak Ave',
         false,
         now(),
         now()
     ),
     (
-        4,
-        'West End Health',
-        'Family',
-        '1010 Pine Ave',
-        false,
-        now(),
-        now()
-    ),
-    (
-        5,
-        'Northview Center',
-        'Pediatric',
-        '222 Maple Blvd',
+        'Sunrise Health Center',
+        'Hospital',
+        '1010 Maple Dr',
         false,
         now(),
         now()
     );
--- Patients
-INSERT INTO patients (
-        id,
-        name,
-        age,
-        gender,
-        facility_id,
-        deleted,
-        created_at,
-        updated_at
-    )
-VALUES (1, 'John Doe', 30, 'M', 1, false, now(), now()),
-    (2, 'Jane Smith', 45, 'F', 1, false, now(), now()),
-    (
-        3,
-        'Mike Johnson',
-        60,
-        'M',
-        2,
-        false,
-        now(),
-        now()
-    ),
-    (4, 'Emma Lee', 29, 'F', 3, false, now(), now()),
-    (
-        5,
-        'Chris Brown',
-        50,
-        'M',
-        2,
-        false,
-        now(),
-        now()
-    ),
-    (6, 'Sara Kim', 34, 'F', 3, false, now(), now()),
-    (7, 'David Park', 41, 'M', 4, false, now(), now()),
-    (8, 'Lena Adams', 37, 'F', 4, false, now(), now()),
-    (
-        9,
-        'Ali Mahmoud',
-        25,
-        'M',
-        5,
-        false,
-        now(),
-        now()
-    ),
-    (
-        10,
-        'Nora Hossain',
-        32,
-        'F',
-        5,
-        false,
-        now(),
-        now()
-    ),
-    (
-        11,
-        'Tariq Amin',
-        39,
-        'M',
-        1,
-        false,
-        now(),
-        now()
-    ),
-    (
-        12,
-        'Zahra Alvi',
-        28,
-        'F',
-        1,
-        false,
-        now(),
-        now()
-    ),
-    (
-        13,
-        'Tom Nguyen',
-        52,
-        'M',
-        2,
-        false,
-        now(),
-        now()
-    ),
-    (
-        14,
-        'Rita Singh',
-        46,
-        'F',
-        2,
-        false,
-        now(),
-        now()
-    ),
-    (
-        15,
-        'Mona Elbaz',
-        31,
-        'F',
-        3,
-        false,
-        now(),
-        now()
-    ),
-    (
-        16,
-        'Adam Jones',
-        63,
-        'M',
-        3,
-        false,
-        now(),
-        now()
-    ),
-    (17, 'Mei Zhang', 26, 'F', 4, false, now(), now()),
-    (
-        18,
-        'Carlos Ruiz',
-        48,
-        'M',
-        4,
-        false,
-        now(),
-        now()
-    ),
-    (
-        19,
-        'Fatima Noor',
-        33,
-        'F',
-        5,
-        false,
-        now(),
-        now()
-    ),
-    (
-        20,
-        'Hassan Nabil',
-        44,
-        'M',
-        5,
-        false,
-        now(),
-        now()
-    );
+-- Insert patients
+INSERT INTO patients (name, age, facility_id)
+VALUES ('John Doe', 30, 1),
+    ('Jane Smith', 25, 1),
+    ('Ahmed Ali', 45, 2),
+    ('Emily Clark', 52, 2),
+    ('Mohamed Ibrahim', 33, 3),
+    ('Sara Johnson', 28, 4),
+    ('Khaled Nasser', 60, 4);

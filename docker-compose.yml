@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    container_name: healthcare_postgres
+    environment:
+      POSTGRES_DB: healthcare_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
