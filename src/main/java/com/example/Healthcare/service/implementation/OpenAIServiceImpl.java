@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class OpenAIServiceImpl implements OpenAIService {
 
-    private static final String OPENAI_API_KEY = "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"; // 🔐 Replace securely
+    private static final String OPENAI_API_KEY = "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"; 
     private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
 
     @Override
